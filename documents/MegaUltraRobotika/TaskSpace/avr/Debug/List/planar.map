@@ -1,0 +1,22 @@
+RAM Allocation [bytes]
+Variable                                                                          Address   Size
+------------------------------------------------------------------------------------------------
+
+EEPROM Allocation [bytes]
+Variable                                                                          Address   Size
+------------------------------------------------------------------------------------------------
+
+Register Allocation
+Variable                                                                          Register  Size
+------------------------------------------------------------------------------------------------
+
+FLASH Allocation [words]
+Function                                                                          Address   Size
+------------------------------------------------------------------------------------------------
+set_servo1                                                                        0x0006D      3
+set_servo3                                                                        0x00071      3
+set_servo5                                                                        0x00075      3
+set_servo6                                                                        0x00078     10
+konversi                                                                          0x00082     37
+main                                                                              0x000A7    183
+getchar                                                                           0x0015E      4

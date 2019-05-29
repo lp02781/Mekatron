@@ -1,0 +1,2 @@
+jalan_dong
+-DCATKIN_DEVEL_PREFIX=/home/mfikih15/Documents/mekatron/devel -DCMAKE_INSTALL_PREFIX=/home/mfikih15/Documents/mekatron/install -G Unix Makefiles

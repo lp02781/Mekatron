@@ -1,0 +1,555 @@
+;/*******************************************************
+;This program was created by the
+;CodeWizardAVR V3.12 Advanced
+;Automatic Program Generator
+;© Copyright 1998-2014 Pavel Haiduc, HP InfoTech s.r.l.
+;http://www.hpinfotech.com
+;
+;Project :
+;Version :
+;Date    : 20/10/2018
+;Author  :
+;Company :
+;Comments:
+;
+;
+;Chip type               : ATmega128
+;Program type            : Application
+;AVR Core Clock frequency: 8,000000 MHz
+;Memory model            : Small
+;External RAM size       : 0
+;Data Stack size         : 1024
+;*******************************************************/
+;
+;#include <mega128.h>
+;PCODE: $00000000 VOL: 0
+	#ifndef __SLEEP_DEFINED__
+;PCODE: $00000001 VOL: 0
+	#define __SLEEP_DEFINED__
+;PCODE: $00000002 VOL: 0
+	.EQU __se_bit=0x20
+;PCODE: $00000003 VOL: 0
+	.EQU __sm_mask=0x1C
+;PCODE: $00000004 VOL: 0
+	.EQU __sm_powerdown=0x10
+;PCODE: $00000005 VOL: 0
+	.EQU __sm_powersave=0x18
+;PCODE: $00000006 VOL: 0
+	.EQU __sm_standby=0x14
+;PCODE: $00000007 VOL: 0
+	.EQU __sm_ext_standby=0x1C
+;PCODE: $00000008 VOL: 0
+	.EQU __sm_adc_noise_red=0x08
+;PCODE: $00000009 VOL: 0
+	.SET power_ctrl_reg=mcucr
+;PCODE: $0000000A VOL: 0
+	#endif
+;PCODE: $0000000B VOL: 0
+;PCODE: $0000000C VOL: 0
+;#include <delay.h>
+;#include <stdio.h>
+;
+;// Declare your global variables here
+;
+;void set_servo1(float sudut)
+; 0000 001F  {
+
+	.CSEG
+;PCODE: $0000000D VOL: 0
+;PCODE: $0000000E VOL: 0
+; 0000 0020  OCR2= sudut;
+;PCODE: $0000000F VOL: 0
+;	sudut -> Y+0
+;PCODE: $00000010 VOL: 0
+;PCODE: $00000011 VOL: 0
+;PCODE: $00000012 VOL: 0
+; 0000 0021  };
+;PCODE: $00000013 VOL: 0
+;PCODE: $00000014 VOL: 0
+;PCODE: $00000015 VOL: 0
+;
+;void set_servo2(float sudut)
+; 0000 0024  {
+;PCODE: $00000016 VOL: 0
+;PCODE: $00000017 VOL: 0
+; 0000 0025  OCR1A= sudut;
+;PCODE: $00000018 VOL: 0
+;	sudut -> Y+0
+;PCODE: $00000019 VOL: 0
+;PCODE: $0000001A VOL: 0
+;PCODE: $0000001B VOL: 0
+; 0000 0026  };
+;PCODE: $0000001C VOL: 0
+;PCODE: $0000001D VOL: 0
+;PCODE: $0000001E VOL: 0
+;
+; void set_servo3(float sudut)
+; 0000 0029  {
+;PCODE: $0000001F VOL: 0
+;PCODE: $00000020 VOL: 0
+; 0000 002A  OCR1B= sudut;
+;PCODE: $00000021 VOL: 0
+;	sudut -> Y+0
+;PCODE: $00000022 VOL: 0
+;PCODE: $00000023 VOL: 0
+;PCODE: $00000024 VOL: 0
+; 0000 002B  };
+;PCODE: $00000025 VOL: 0
+;PCODE: $00000026 VOL: 0
+;PCODE: $00000027 VOL: 0
+; void set_servo4(float sudut)
+; 0000 002D  {
+;PCODE: $00000028 VOL: 0
+;PCODE: $00000029 VOL: 0
+; 0000 002E  OCR0= sudut;
+;PCODE: $0000002A VOL: 0
+;	sudut -> Y+0
+;PCODE: $0000002B VOL: 0
+;PCODE: $0000002C VOL: 0
+;PCODE: $0000002D VOL: 0
+; 0000 002F  };
+;PCODE: $0000002E VOL: 0
+;PCODE: $0000002F VOL: 0
+;PCODE: $00000030 VOL: 0
+;
+;
+;float konversi(float tetha)
+; 0000 0033 {
+;PCODE: $00000031 VOL: 0
+;PCODE: $00000032 VOL: 0
+; 0000 0034     float pwm = ((tetha/180)+1) *31.25;
+; 0000 0035     //float pwm = ((tetha/180)+1) *1000/2;
+; 0000 0036     //set_servo((int)pwm);
+; 0000 0037     return pwm;
+;PCODE: $00000033 VOL: 0
+;PCODE: $00000034 VOL: 0
+;	tetha -> Y+4
+;	pwm -> Y+0
+;PCODE: $00000035 VOL: 0
+;PCODE: $00000036 VOL: 0
+;PCODE: $00000037 VOL: 0
+;PCODE: $00000038 VOL: 0
+;PCODE: $00000039 VOL: 0
+;PCODE: $0000003A VOL: 0
+;PCODE: $0000003B VOL: 0
+;PCODE: $0000003C VOL: 0
+;PCODE: $0000003D VOL: 0
+;PCODE: $0000003E VOL: 0
+;PCODE: $0000003F VOL: 0
+; 0000 0038 }
+;PCODE: $00000040 VOL: 0
+;
+;
+;void main(void)
+; 0000 003C {
+;PCODE: $00000041 VOL: 0
+; 0000 003D // Declare your local variables here
+; 0000 003E int i;
+; 0000 003F unsigned char sudut1, sudut2, sudut3, sudut4, sudut5, sudut6, header;
+; 0000 0040 float sudutreal1, sudutreal2, sudutreal3, sudutreal4, sudutreal5, sudutreal6;
+; 0000 0041 // Input/Output Ports initialization
+; 0000 0042 // Port A initialization
+; 0000 0043 // Func7=In Func6=In Func5=In Func4=In Func3=In Func2=In Func1=In Func0=In
+; 0000 0044 // State7=T State6=T State5=T State4=T State3=T State2=T State1=T State0=T
+; 0000 0045 PORTA=0x00;
+;PCODE: $00000042 VOL: 0
+;	i -> R16,R17
+;	sudut1 -> R19
+;	sudut2 -> R18
+;	sudut3 -> R21
+;	sudut4 -> R20
+;	sudut5 -> Y+26
+;	sudut6 -> Y+25
+;	header -> Y+24
+;	sudutreal1 -> Y+20
+;	sudutreal2 -> Y+16
+;	sudutreal3 -> Y+12
+;	sudutreal4 -> Y+8
+;	sudutreal5 -> Y+4
+;	sudutreal6 -> Y+0
+;PCODE: $00000043 VOL: 0
+;PCODE: $00000044 VOL: 0
+; 0000 0046 DDRA=0x00;
+;PCODE: $00000045 VOL: 0
+;PCODE: $00000046 VOL: 0
+; 0000 0047 
+; 0000 0048 // Port B initialization
+; 0000 0049 // Func7=Out Func6=Out Func5=Out Func4=Out Func3=Out Func2=Out Func1=Out Func0=Out
+; 0000 004A // State7=0 State6=0 State5=0 State4=0 State3=0 State2=0 State1=0 State0=0
+; 0000 004B PORTB=0x00;
+;PCODE: $00000047 VOL: 0
+;PCODE: $00000048 VOL: 0
+; 0000 004C DDRB=0xFF;
+;PCODE: $00000049 VOL: 0
+;PCODE: $0000004A VOL: 0
+; 0000 004D 
+; 0000 004E // Port C initialization
+; 0000 004F // Func7=In Func6=In Func5=In Func4=In Func3=In Func2=In Func1=In Func0=In
+; 0000 0050 // State7=T State6=T State5=T State4=T State3=T State2=T State1=T State0=T
+; 0000 0051 PORTC=0x00;
+;PCODE: $0000004B VOL: 0
+;PCODE: $0000004C VOL: 0
+; 0000 0052 DDRC=0x00;
+;PCODE: $0000004D VOL: 0
+;PCODE: $0000004E VOL: 0
+; 0000 0053 
+; 0000 0054 // Port D initialization
+; 0000 0055 // Func7=In Func6=In Func5=In Func4=In Func3=In Func2=In Func1=In Func0=In
+; 0000 0056 // State7=T State6=T State5=T State4=T State3=T State2=T State1=T State0=T
+; 0000 0057 PORTD=0x00;
+;PCODE: $0000004F VOL: 0
+;PCODE: $00000050 VOL: 0
+; 0000 0058 DDRD=0x00;
+;PCODE: $00000051 VOL: 0
+;PCODE: $00000052 VOL: 0
+; 0000 0059 
+; 0000 005A // Port E initialization
+; 0000 005B // Func7=In Func6=In Func5=In Func4=In Func3=In Func2=In Func1=In Func0=In
+; 0000 005C // State7=T State6=T State5=T State4=T State3=T State2=T State1=T State0=T
+; 0000 005D PORTE=0x00;
+;PCODE: $00000053 VOL: 0
+;PCODE: $00000054 VOL: 0
+; 0000 005E DDRE=0x00;
+;PCODE: $00000055 VOL: 0
+;PCODE: $00000056 VOL: 0
+; 0000 005F 
+; 0000 0060 // Port F initialization
+; 0000 0061 // Func7=In Func6=In Func5=In Func4=In Func3=In Func2=In Func1=In Func0=In
+; 0000 0062 // State7=T State6=T State5=T State4=T State3=T State2=T State1=T State0=T
+; 0000 0063 PORTF=0x00;
+;PCODE: $00000057 VOL: 0
+;PCODE: $00000058 VOL: 0
+; 0000 0064 DDRF=0x00;
+;PCODE: $00000059 VOL: 0
+;PCODE: $0000005A VOL: 0
+; 0000 0065 
+; 0000 0066 // Port G initialization
+; 0000 0067 // Func4=In Func3=In Func2=In Func1=In Func0=In
+; 0000 0068 // State4=T State3=T State2=T State1=T State0=T
+; 0000 0069 PORTG=0x00;
+;PCODE: $0000005B VOL: 0
+;PCODE: $0000005C VOL: 0
+; 0000 006A DDRG=0x00;
+;PCODE: $0000005D VOL: 0
+;PCODE: $0000005E VOL: 0
+; 0000 006B 
+; 0000 006C // Timer/Counter 0 initialization
+; 0000 006D // Clock source: System Clock
+; 0000 006E // Clock value: Timer 0 Stopped
+; 0000 006F // Mode: Normal top=0xFF
+; 0000 0070 // OC0 output: Disconnected
+; 0000 0071 ASSR=0x00;
+;PCODE: $0000005F VOL: 0
+;PCODE: $00000060 VOL: 0
+; 0000 0072 TCCR0=0x00;
+;PCODE: $00000061 VOL: 0
+;PCODE: $00000062 VOL: 0
+; 0000 0073 TCNT0=0x00;
+;PCODE: $00000063 VOL: 0
+;PCODE: $00000064 VOL: 0
+; 0000 0074 OCR0=0x00;
+;PCODE: $00000065 VOL: 0
+;PCODE: $00000066 VOL: 0
+; 0000 0075 
+; 0000 0076 // Timer/Counter 1 initialization
+; 0000 0077 // Clock source: System Clock
+; 0000 0078 // Clock value: 31.250 kHz
+; 0000 0079 // Mode: Fast PWM top=ICR1
+; 0000 007A // OC1A output: Non-Inv.
+; 0000 007B // OC1B output: Non-Inv.
+; 0000 007C // OC1C output: Discon.
+; 0000 007D // Noise Canceler: Off
+; 0000 007E // Input Capture on Falling Edge
+; 0000 007F // Timer1 Overflow Interrupt: Off
+; 0000 0080 // Input Capture Interrupt: Off
+; 0000 0081 // Compare A Match Interrupt: Off
+; 0000 0082 // Compare B Match Interrupt: Off
+; 0000 0083 // Compare C Match Interrupt: Off
+; 0000 0084 TCCR1A=0xA2;
+;PCODE: $00000067 VOL: 0
+;PCODE: $00000068 VOL: 0
+; 0000 0085 TCCR1B=0x1C;
+;PCODE: $00000069 VOL: 0
+;PCODE: $0000006A VOL: 0
+; 0000 0086 TCNT1H=0x00;
+;PCODE: $0000006B VOL: 0
+;PCODE: $0000006C VOL: 0
+; 0000 0087 TCNT1L=0x00;
+;PCODE: $0000006D VOL: 0
+;PCODE: $0000006E VOL: 0
+; 0000 0088 //ICR1H=0x4E;
+; 0000 0089 //ICR1L=0x1F;
+; 0000 008A ICR1H=0x36;
+;PCODE: $0000006F VOL: 0
+;PCODE: $00000070 VOL: 0
+; 0000 008B ICR1L=0x00;
+;PCODE: $00000071 VOL: 0
+;PCODE: $00000072 VOL: 0
+; 0000 008C OCR1AH=0x00;
+;PCODE: $00000073 VOL: 0
+;PCODE: $00000074 VOL: 0
+; 0000 008D OCR1AL=0x00;
+;PCODE: $00000075 VOL: 0
+;PCODE: $00000076 VOL: 0
+; 0000 008E OCR1BH=0x00;
+;PCODE: $00000077 VOL: 0
+;PCODE: $00000078 VOL: 0
+; 0000 008F OCR1BL=0x00;
+;PCODE: $00000079 VOL: 0
+;PCODE: $0000007A VOL: 0
+; 0000 0090 OCR1CH=0x00;
+;PCODE: $0000007B VOL: 0
+;PCODE: $0000007C VOL: 0
+; 0000 0091 OCR1CL=0x00;
+;PCODE: $0000007D VOL: 0
+;PCODE: $0000007E VOL: 0
+; 0000 0092 
+; 0000 0093 // Timer/Counter 2 initialization
+; 0000 0094 // Clock source: System Clock
+; 0000 0095 // Clock value: Timer2 Stopped
+; 0000 0096 // Mode: Normal top=0xFF
+; 0000 0097 // OC2 output: Disconnected
+; 0000 0098 TCCR2=0x01;
+;PCODE: $0000007F VOL: 0
+;PCODE: $00000080 VOL: 0
+; 0000 0099 TCNT2=0x00;
+;PCODE: $00000081 VOL: 0
+;PCODE: $00000082 VOL: 0
+; 0000 009A OCR2=0x00;
+;PCODE: $00000083 VOL: 0
+;PCODE: $00000084 VOL: 0
+; 0000 009B 
+; 0000 009C // Timer/Counter 3 initialization
+; 0000 009D // Clock source: System Clock
+; 0000 009E // Clock value: Timer3 Stopped
+; 0000 009F // Mode: Normal top=0xFFFF
+; 0000 00A0 // OC3A output: Discon.
+; 0000 00A1 // OC3B output: Discon.
+; 0000 00A2 // OC3C output: Discon.
+; 0000 00A3 // Noise Canceler: Off
+; 0000 00A4 // Input Capture on Falling Edge
+; 0000 00A5 // Timer3 Overflow Interrupt: Off
+; 0000 00A6 // Input Capture Interrupt: Off
+; 0000 00A7 // Compare A Match Interrupt: Off
+; 0000 00A8 // Compare B Match Interrupt: Off
+; 0000 00A9 // Compare C Match Interrupt: Off
+; 0000 00AA TCCR3A=0x01;
+;PCODE: $00000085 VOL: 0
+;PCODE: $00000086 VOL: 0
+; 0000 00AB TCCR3B=0x01;
+;PCODE: $00000087 VOL: 0
+;PCODE: $00000088 VOL: 0
+; 0000 00AC TCNT3H=0x00;
+;PCODE: $00000089 VOL: 0
+;PCODE: $0000008A VOL: 0
+; 0000 00AD TCNT3L=0x00;
+;PCODE: $0000008B VOL: 0
+;PCODE: $0000008C VOL: 0
+; 0000 00AE ICR3H=0x00;
+;PCODE: $0000008D VOL: 0
+;PCODE: $0000008E VOL: 0
+; 0000 00AF ICR3L=0x00;
+;PCODE: $0000008F VOL: 0
+;PCODE: $00000090 VOL: 0
+; 0000 00B0 OCR3AH=0x00;
+;PCODE: $00000091 VOL: 0
+;PCODE: $00000092 VOL: 0
+; 0000 00B1 OCR3AL=0x00;
+;PCODE: $00000093 VOL: 0
+;PCODE: $00000094 VOL: 0
+; 0000 00B2 OCR3BH=0x00;
+;PCODE: $00000095 VOL: 0
+;PCODE: $00000096 VOL: 0
+; 0000 00B3 OCR3BL=0x00;
+;PCODE: $00000097 VOL: 0
+;PCODE: $00000098 VOL: 0
+; 0000 00B4 OCR3CH=0x00;
+;PCODE: $00000099 VOL: 0
+;PCODE: $0000009A VOL: 0
+; 0000 00B5 OCR3CL=0x00;
+;PCODE: $0000009B VOL: 0
+;PCODE: $0000009C VOL: 0
+; 0000 00B6 
+; 0000 00B7 // External Interrupt(s) initialization
+; 0000 00B8 // INT0: Off
+; 0000 00B9 // INT1: Off
+; 0000 00BA // INT2: Off
+; 0000 00BB // INT3: Off
+; 0000 00BC // INT4: Off
+; 0000 00BD // INT5: Off
+; 0000 00BE // INT6: Off
+; 0000 00BF // INT7: Off
+; 0000 00C0 EICRA=0x00;
+;PCODE: $0000009D VOL: 0
+;PCODE: $0000009E VOL: 0
+; 0000 00C1 EICRB=0x00;
+;PCODE: $0000009F VOL: 0
+;PCODE: $000000A0 VOL: 0
+; 0000 00C2 EIMSK=0x00;
+;PCODE: $000000A1 VOL: 0
+;PCODE: $000000A2 VOL: 0
+; 0000 00C3 
+; 0000 00C4 // Timer(s)/Counter(s) Interrupt(s) initialization
+; 0000 00C5 TIMSK=0x00;
+;PCODE: $000000A3 VOL: 0
+;PCODE: $000000A4 VOL: 0
+; 0000 00C6 
+; 0000 00C7 ETIMSK=0x00;
+;PCODE: $000000A5 VOL: 0
+;PCODE: $000000A6 VOL: 0
+; 0000 00C8 
+; 0000 00C9 // USART0 initialization
+; 0000 00CA // Communication Parameters: 8 Data, 1 Stop, No Parity
+; 0000 00CB // USART0 Receiver: On
+; 0000 00CC // USART0 Transmitter: On
+; 0000 00CD // USART0 Mode: Asynchronous
+; 0000 00CE // USART0 Baud Rate: 9600
+; 0000 00CF UCSR0A=0x00;
+;PCODE: $000000A7 VOL: 0
+;PCODE: $000000A8 VOL: 0
+; 0000 00D0 UCSR0B=0x18;
+;PCODE: $000000A9 VOL: 0
+;PCODE: $000000AA VOL: 0
+; 0000 00D1 UCSR0C=0x06;
+;PCODE: $000000AB VOL: 0
+;PCODE: $000000AC VOL: 0
+; 0000 00D2 UBRR0H=0x00;
+;PCODE: $000000AD VOL: 0
+;PCODE: $000000AE VOL: 0
+; 0000 00D3 UBRR0L=0x33;
+;PCODE: $000000AF VOL: 0
+;PCODE: $000000B0 VOL: 0
+; 0000 00D4 
+; 0000 00D5 // USART1 initialization
+; 0000 00D6 // USART1 disabled
+; 0000 00D7 UCSR1B=0x00;
+;PCODE: $000000B1 VOL: 0
+;PCODE: $000000B2 VOL: 0
+; 0000 00D8 
+; 0000 00D9 // Analog Comparator initialization
+; 0000 00DA // Analog Comparator: Off
+; 0000 00DB // Analog Comparator Input Capture by Timer/Counter 1: Off
+; 0000 00DC ACSR=0x80;
+;PCODE: $000000B3 VOL: 0
+;PCODE: $000000B4 VOL: 0
+; 0000 00DD SFIOR=0x00;
+;PCODE: $000000B5 VOL: 0
+;PCODE: $000000B6 VOL: 0
+; 0000 00DE 
+; 0000 00DF // ADC initialization
+; 0000 00E0 // ADC disabled
+; 0000 00E1 ADCSRA=0x00;
+;PCODE: $000000B7 VOL: 0
+;PCODE: $000000B8 VOL: 0
+; 0000 00E2 
+; 0000 00E3 // SPI initialization
+; 0000 00E4 // SPI disabled
+; 0000 00E5 SPCR=0x00;
+;PCODE: $000000B9 VOL: 0
+;PCODE: $000000BA VOL: 0
+; 0000 00E6 
+; 0000 00E7 // TWI initialization
+; 0000 00E8 // TWI disabled
+; 0000 00E9 TWCR=0x00;
+;PCODE: $000000BB VOL: 0
+;PCODE: $000000BC VOL: 0
+; 0000 00EA 
+; 0000 00EB while (1)
+;PCODE: $000000BD VOL: 0
+; 0000 00EC       {
+; 0000 00ED       // Place your code here
+; 0000 00EE          header=getchar();
+;PCODE: $000000BE VOL: 0
+;PCODE: $000000BF VOL: 0
+; 0000 00EF          if(header==0xF5){
+;PCODE: $000000C0 VOL: 0
+;PCODE: $000000C1 VOL: 0
+;PCODE: $000000C2 VOL: 0
+; 0000 00F0           sudut1 = getchar();
+;PCODE: $000000C3 VOL: 0
+;PCODE: $000000C4 VOL: 0
+; 0000 00F1           sudutreal1=konversi((float)sudut1);
+;PCODE: $000000C5 VOL: 0
+;PCODE: $000000C6 VOL: 0
+;PCODE: $000000C7 VOL: 0
+;PCODE: $000000C8 VOL: 0
+;PCODE: $000000C9 VOL: 0
+; 0000 00F2           set_servo1(sudutreal1);
+;PCODE: $000000CA VOL: 0
+;PCODE: $000000CB VOL: 0
+; 0000 00F3 
+; 0000 00F4           sudut2 = getchar();
+;PCODE: $000000CC VOL: 0
+;PCODE: $000000CD VOL: 0
+; 0000 00F5           sudutreal2=konversi((float)sudut2);
+;PCODE: $000000CE VOL: 0
+;PCODE: $000000CF VOL: 0
+;PCODE: $000000D0 VOL: 0
+;PCODE: $000000D1 VOL: 0
+;PCODE: $000000D2 VOL: 0
+; 0000 00F6           set_servo2(sudutreal2);
+;PCODE: $000000D3 VOL: 0
+;PCODE: $000000D4 VOL: 0
+; 0000 00F7 
+; 0000 00F8           sudut3 = getchar();
+;PCODE: $000000D5 VOL: 0
+;PCODE: $000000D6 VOL: 0
+; 0000 00F9           sudutreal3=konversi((float)sudut3);
+;PCODE: $000000D7 VOL: 0
+;PCODE: $000000D8 VOL: 0
+;PCODE: $000000D9 VOL: 0
+;PCODE: $000000DA VOL: 0
+;PCODE: $000000DB VOL: 0
+; 0000 00FA           set_servo3(sudutreal3);
+;PCODE: $000000DC VOL: 0
+;PCODE: $000000DD VOL: 0
+; 0000 00FB 
+; 0000 00FC           sudut4 = getchar();
+;PCODE: $000000DE VOL: 0
+;PCODE: $000000DF VOL: 0
+; 0000 00FD           sudutreal4=konversi((float)sudut4);
+;PCODE: $000000E0 VOL: 0
+;PCODE: $000000E1 VOL: 0
+;PCODE: $000000E2 VOL: 0
+;PCODE: $000000E3 VOL: 0
+;PCODE: $000000E4 VOL: 0
+; 0000 00FE           set_servo4(sudutreal4);
+;PCODE: $000000E5 VOL: 0
+;PCODE: $000000E6 VOL: 0
+; 0000 00FF 
+; 0000 0100           sudut5 = getchar();
+;PCODE: $000000E7 VOL: 0
+;PCODE: $000000E8 VOL: 0
+; 0000 0101           sudutreal5=konversi((float)sudut5);
+;PCODE: $000000E9 VOL: 0
+;PCODE: $000000EA VOL: 0
+;PCODE: $000000EB VOL: 0
+;PCODE: $000000EC VOL: 0
+;PCODE: $000000ED VOL: 0
+; 0000 0102           set_servo5(sudutreal5);
+;PCODE: $000000EE VOL: 0
+; 0000 0103 
+; 0000 0104           sudut6 = getchar();
+;PCODE: $000000EF VOL: 0
+;PCODE: $000000F0 VOL: 0
+;PCODE: $000000F1 VOL: 0
+; 0000 0105           sudutreal6=konversi((float)sudut6);
+;PCODE: $000000F2 VOL: 0
+;PCODE: $000000F3 VOL: 0
+;PCODE: $000000F4 VOL: 0
+;PCODE: $000000F5 VOL: 0
+;PCODE: $000000F6 VOL: 0
+; 0000 0106           set_servo6(sudutreal6);
+;PCODE: $000000F7 VOL: 0
+; 0000 0107           }
+;PCODE: $000000F8 VOL: 0
+; 0000 0108          // OCR1B= 000;
+; 0000 0109       }
+;PCODE: $000000F9 VOL: 0
+;PCODE: $000000FA VOL: 0
+;PCODE: $000000FB VOL: 0
+; 0000 010A }
+;PCODE: $000000FC VOL: 0
+;PCODE: $000000FD VOL: 0
+;PCODE: $000000FE VOL: 0
+;PCODE: $000000FF VOL: 0

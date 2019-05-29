@@ -1,0 +1,8 @@
+prefix=/home/mfikih15/Documents/mekatron/install
+
+Name: jalan_dong
+Description: Description of jalan_dong
+Version: 0.0.0
+Cflags: 
+Libs: -L/home/mfikih15/Documents/mekatron/install/lib 
+Requires: 
