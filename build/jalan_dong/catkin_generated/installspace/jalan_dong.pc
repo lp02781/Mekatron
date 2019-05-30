@@ -3,6 +3,6 @@ prefix=/home/mfikih15/Documents/mekatron/install
 Name: jalan_dong
 Description: Description of jalan_dong
 Version: 0.0.0
-Cflags: 
+Cflags: -I/home/mfikih15/Documents/mekatron/install/include
 Libs: -L/home/mfikih15/Documents/mekatron/install/lib 
-Requires: 
+Requires: message_runtime
