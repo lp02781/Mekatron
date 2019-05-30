@@ -1,0 +1,8 @@
+prefix=/home/mfikih15/Documents/mekatron/install
+
+Name: rosserial_msgs
+Description: Description of rosserial_msgs
+Version: 0.8.0
+Cflags: -I/home/mfikih15/Documents/mekatron/install/include
+Libs: -L/home/mfikih15/Documents/mekatron/install/lib 
+Requires: message_runtime

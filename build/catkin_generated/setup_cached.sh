@@ -8,4 +8,3 @@
 
 # modified environment variables
 export PWD="/home/mfikih15/Documents/mekatron/build"
-export PYTHONPATH="/home/mfikih15/Documents/mekatron/devel/lib/python2.7/dist-packages:$PYTHONPATH"
